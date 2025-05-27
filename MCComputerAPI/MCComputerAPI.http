@@ -1,0 +1,6 @@
+@MCComputerAPI_HostAddress = http://localhost:5056
+
+GET {{MCComputerAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
