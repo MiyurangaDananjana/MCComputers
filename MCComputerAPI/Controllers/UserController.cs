@@ -16,7 +16,6 @@ public class UserController : ControllerBase
     public UserController(IUsersRepositories usersRepositories)
     {
         _userRepositories = usersRepositories;
-
     }
 
     [HttpGet]
