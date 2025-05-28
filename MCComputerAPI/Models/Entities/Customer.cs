@@ -3,6 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace MCComputerAPI.Models.Entities;
+
 public class Customer
 {
     [Key]
@@ -13,4 +14,6 @@ public class Customer
     public string? Email { get; set; }
 
     public string? Phone { get; set; }
+
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

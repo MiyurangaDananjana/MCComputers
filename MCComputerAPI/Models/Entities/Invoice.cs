@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MCComputerAPI.Models.Entities;
 
@@ -9,6 +10,8 @@ public class Invoice
 
     public int CustomerId { get; set; }
 
+    [ForeignKey(nameof(CustomerId))]
+    public virtual Customer? Customer { get; set; }
     public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 
     public decimal TotalAmmount { get; set; }
