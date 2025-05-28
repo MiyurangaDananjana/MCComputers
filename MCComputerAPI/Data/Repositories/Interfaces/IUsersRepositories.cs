@@ -1,12 +1,17 @@
 
 using MCComputerAPI.Models.Entities;
 
-
 namespace MCComputerAPI.Repositories.Data.Interfaces;
 
 public interface IUsersRepositories
 {
-    User GetUserDetails(int id);
+    User GetUserById(int id);
 
     bool SaveUserDetails(User user);
+
+    User UpdateUserDetails(User user);
+
+    bool DeleteUser(int id);
+
+    User GetUserByUsername(string userName);
 }
