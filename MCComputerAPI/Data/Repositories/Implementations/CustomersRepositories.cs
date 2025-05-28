@@ -1,6 +1,6 @@
-using MCComputerAPI.Repositories.Data.Interfaces;
+using MCComputerAPI.Data.Interfaces;
 
-namespace MCComputerAPI.Repositories.Data.Implementations;
+namespace MCComputerAPI.Data.Implementations;
 
 public class CustomersRepositories : ICustomersRepositories
 {

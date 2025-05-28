@@ -3,7 +3,7 @@ using MCComputerAPI.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using MCComputerAPI.Helpers;
 using Serilog;
-using MCComputerAPI.Repositories.Data.Interfaces;
+using MCComputerAPI.Data.Interfaces;
 
 namespace MCComputerAPI;
 
@@ -111,7 +111,7 @@ public class UserController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
-    
+
     [HttpDelete("delete-user/{id}")]
     public IActionResult DeleteUser(int id)
     {

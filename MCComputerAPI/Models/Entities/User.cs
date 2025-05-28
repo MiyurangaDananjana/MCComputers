@@ -21,5 +21,4 @@ public class User
     public required string Password { get; set; }
 
     public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-
 }

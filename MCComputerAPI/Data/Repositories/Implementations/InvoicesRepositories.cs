@@ -1,4 +1,4 @@
-using MCComputerAPI.Repositories.Data.Interfaces;
+using MCComputerAPI.Data.Interfaces;
 
 namespace MCComputerAPI.Data.Implementations;
 

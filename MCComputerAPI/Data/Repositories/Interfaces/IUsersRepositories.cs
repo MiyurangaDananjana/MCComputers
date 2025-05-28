@@ -1,7 +1,8 @@
 
 using MCComputerAPI.Models.Entities;
 
-namespace MCComputerAPI.Repositories.Data.Interfaces;
+
+namespace MCComputerAPI.Data.Interfaces;
 
 public interface IUsersRepositories
 {
