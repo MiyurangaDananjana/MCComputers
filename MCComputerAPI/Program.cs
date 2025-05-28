@@ -45,7 +45,7 @@ builder.Services.AddSingleton<IConfigureOptions<JwtBearerOptions>, ConfigureJwtO
 
 // Authentication & Authorization
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer();
+                 .AddJwtBearer();
 
 builder.Services.AddAuthorization();
 

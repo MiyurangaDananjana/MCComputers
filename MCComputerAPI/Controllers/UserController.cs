@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using MCComputerAPI.Helpers;
 using Serilog;
 using MCComputerAPI.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MCComputerAPI;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class UserController : ControllerBase

@@ -15,4 +15,7 @@ public interface IUsersRepositories
     bool DeleteUser(int id);
 
     User GetUserByUsername(string userName);
+
+    bool IsUserValid(string UserName, string Password);
+
 }

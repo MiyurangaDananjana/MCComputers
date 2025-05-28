@@ -95,4 +95,11 @@ public class UsersRepositories : IUsersRepositories
 
         return userDetails;
     }
+
+    public bool IsUserValid(string UserName, string Password)
+    {
+        bool isUser = _context.Users.Where(x => x.UserName == UserName && x.Password == Password).Any();
+        return isUser;
+        
+    }
 }

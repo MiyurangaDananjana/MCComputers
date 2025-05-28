@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using MCComputerAPI.Models.Entities;
 using MCComputerAPI.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using MCComputerAPI.Helpers;
+using MCComputerAPI.Data.Interfaces;
 
 namespace MCComputerAPI;
 
@@ -13,28 +15,42 @@ namespace MCComputerAPI;
 [Route("api/[controller]")]
 public class LoginController : ControllerBase
 {
+    private readonly JwtSettingsHelper _jwtHelper;
+
+    private readonly IUsersRepositories _usersRepositories;
+
+    public LoginController(JwtSettingsHelper jwtHelper, IUsersRepositories usersRepositories)
+    {
+        _jwtHelper = jwtHelper;
+        _usersRepositories = usersRepositories;
+    }
+    
     [AllowAnonymous]
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginDTOs model)
     {
-        // Fake validation
-        if (model.Username == "admin" && model.Password == "password")
+        if (_usersRepositories.IsUserValid(model.Username, HashingHelper.HashPassword(model.Password)))
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes("your_super_secret_key");
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, model.Username)
+            };
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                new Claim(ClaimTypes.Name, model.Username)
-            }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddHours(1),
-                Issuer = "your_issuer",
-                Audience = "your_audience",
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                Issuer = _jwtHelper.ValidIssuer,
+                Audience = _jwtHelper.ValidAudience,
+                SigningCredentials = new SigningCredentials(_jwtHelper.IssuerSigningKey, SecurityAlgorithms.HmacSha256Signature)
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return Ok(new { token = tokenHandler.WriteToken(token) });
+            var tokenString = tokenHandler.WriteToken(token);
+
+            return Ok(new { token = tokenString });
         }
 
         return Unauthorized();
