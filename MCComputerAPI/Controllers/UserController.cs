@@ -1,9 +1,9 @@
-﻿using MCComputerAPI.Data.Interfaces;
-using MCComputerAPI.Models.DTOs;
+﻿using MCComputerAPI.Models.DTOs;
 using MCComputerAPI.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using MCComputerAPI.Helpers;
 using Serilog;
+using MCComputerAPI.Repositories.Data.Interfaces;
 
 namespace MCComputerAPI;
 
@@ -61,7 +61,5 @@ public class UserController : ControllerBase
             Log.Error("Exception in AddNewUser: " + ex);
             return StatusCode(500, "An unexpected error occurred.");
         }
-
     }
-
 }

@@ -1,7 +1,7 @@
 
 using System.Runtime.Serialization;
-using MCComputerAPI.Data.Interfaces;
 using MCComputerAPI.Models.Entities;
+using MCComputerAPI.Repositories.Data.Interfaces;
 using Serilog;
 
 namespace MCComputerAPI.Data.Implementations;
