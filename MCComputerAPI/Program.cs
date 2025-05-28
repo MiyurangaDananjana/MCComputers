@@ -1,4 +1,6 @@
 using MCComputerAPI.Data;
+using MCComputerAPI.Data.Implementations;
+using MCComputerAPI.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -9,10 +11,8 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .CreateLogger();
 
+builder.Host.UseSerilog();
 
-// Add services
-builder.Services.AddCors();
-builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
 {
@@ -24,10 +24,14 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IUsersRepositories, UsersRepositories>();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
+// Add services
+builder.Services.AddCors();
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
