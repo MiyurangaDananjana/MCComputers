@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,HttpClientModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -17,22 +18,20 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    // private authService: AuthService,
+    private authService: AuthService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
     if (this.loginForm.invalid) return;
-
-    alert("hello world")
-    // this.authService.login(this.loginForm.value).subscribe({
-    //   next: () => this.router.navigate(['/invoices']),
-    //   error: () => this.errorMessage = 'Invalid email or password'
-    // });
+    this.authService.login(this.loginForm.value).subscribe({
+      next: () => this.router.navigate(['/home']),
+      error: () => this.errorMessage = 'Invalid email or password'
+    });
   }
 }

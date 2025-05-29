@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MCComputerAPI;
 
-//[Authorize]
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class UserController : ControllerBase

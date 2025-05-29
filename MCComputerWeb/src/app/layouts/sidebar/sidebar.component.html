@@ -1,0 +1,26 @@
+<div class="sidebar bg-light">
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/home/invoices">Invoices</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#customerMenu" role="button" aria-expanded="false"
+                aria-controls="customerMenu">
+                Customers <i class="bi bi-menu-button-fill"></i>
+            </a>
+            <div class="collapse" id="customerMenu">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" routerLink="/home/new-customer"><i class="bi bi-person-plus-fill"></i> New Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/home/list-customers" routerLinkActive="active"><i class="bi bi-person-lines-fill"></i> Customer List</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

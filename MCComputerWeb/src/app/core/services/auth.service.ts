@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
-  private apiUrl = 'https://localhost:5001/api/auth';
+  private apiUrl = 'http://localhost:5001/api/login';
 
-  login(credentials: { email: string; password: string }) {
+  login(credentials: { username: string; password: string }) {
+    console.log("UserName " + credentials.username  + " | " + "Password " + credentials.password   )
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials).pipe(
       tap(res => localStorage.setItem('token', res.token))
     );

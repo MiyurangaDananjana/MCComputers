@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h2>Customer List</h2>
+
+  <table class="table table-bordered table-hover mt-3" *ngIf="customers.length > 0; else noData">
+    <thead class="table-light">
+      <tr>
+        <th class="text-center">#</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Email</th>
+        <th class="text-center">Phone</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers; let i = index">
+        <td class="text-center">{{ i + 1 }}</td>
+        <td class="text-center">{{ customer.name }}</td>
+        <td class="text-center">{{ customer.email }}</td>
+        <td class="text-center">{{ customer.phone }}</td>
+        <td class="text-center">
+            <button class="btn btn-sm">Update</button> |
+            
+            <button class="btn  btn-sm">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="text-muted">No customers found.</p>
+  </ng-template>
+</div>

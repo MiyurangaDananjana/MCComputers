@@ -14,6 +14,7 @@ public class Invoice
     public virtual Customer? Customer { get; set; }
     public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 
+   [Column(TypeName = "decimal(18,4)")]
     public decimal TotalAmmount { get; set; }
 
     public virtual ICollection<InvoiceItems> InvoiceItems { get; set; } = new List<InvoiceItems>();
