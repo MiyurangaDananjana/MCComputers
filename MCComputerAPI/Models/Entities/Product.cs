@@ -13,7 +13,7 @@ public class Product
     public required string Description { get; set; }
 
     [Column(TypeName = "decimal(18,4)")]
-    public double Stock { get; set; }
+    public decimal Stock { get; set; }
 
     public virtual ICollection<InvoiceItems> InvoiceItems { get; set; } = new List<InvoiceItems>();
 

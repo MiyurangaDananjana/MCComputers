@@ -6,7 +6,7 @@ namespace MCComputerAPI.Data.Interfaces;
 public interface IInvoicesRepositories
 {
     // Create
-    Task<Invoice> AddInvoiceAsync(Invoice invoice);
+    Task<Invoice> AddInvoiceAsync(Invoice invoice, List<InvoiceItems> invoiceItems);
 
     // Read
     Task<IEnumerable<Invoice>> GetAllInvoicesAsync();

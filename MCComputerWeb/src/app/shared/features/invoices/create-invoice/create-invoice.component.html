@@ -1,0 +1,61 @@
+<div class="container mt-4">
+    <h2>Create Invoice</h2>
+
+    <!-- Customer Selection with Search -->
+    <input class="form-control" list="customerList" [(ngModel)]="searchTerm" (input)="filterCustomers()"
+        placeholder="Search by name" name="customerSearch" required />
+    <datalist id="customerList">
+        <option *ngFor="let customer of filteredCustomers" [value]="customer.name">
+            {{ customer.name }} (ID: {{ customer.customerId }})
+        </option>
+    </datalist>
+
+
+    <!-- Invoice Items Table -->
+    <div class="mt-3">
+        <h5>Invoice Items</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of invoice.invoiceItems">
+                    <td>{{ item.productId }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.quantity * item.price }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add New Item -->
+    <div class="row mb-3">
+        <div class="col">
+            <input type="number" class="form-control" [(ngModel)]="newItem.productId" placeholder="Product ID" />
+        </div>
+        <div class="col">
+            <input type="number" class="form-control" [(ngModel)]="newItem.quantity" placeholder="Quantity" />
+        </div>
+        <div class="col">
+            <input type="number" class="form-control" [(ngModel)]="newItem.price" placeholder="Price" />
+        </div>
+        <div class="col">
+            <button class="btn btn-success w-100" (click)="addItem()">Add Item</button>
+        </div>
+    </div>
+
+    <!-- Invoice Total -->
+    <div class="mb-3">
+        <label class="form-label">Total Amount</label>
+        <input type="number" class="form-control" [(ngModel)]="invoice.totalAmmount" readonly />
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn btn-primary" (click)="submitInvoice()">Submit Invoice</button>
+</div>

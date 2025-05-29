@@ -13,10 +13,21 @@ namespace MCComputerAPI.Data.Implementations
             _context = context;
         }
 
-        public async Task<Invoice> AddInvoiceAsync(Invoice invoice)
+        public async Task<Invoice> AddInvoiceAsync(Invoice invoice, List<InvoiceItems> invoiceItems)
         {
             _context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
+
+            foreach (var item in invoiceItems)
+            {
+                item.InvoiceId = invoice.InvoiceId;
+            }
+
+            _context.InvoiceItems.AddRange(invoiceItems);
+            await _context.SaveChangesAsync();
+
+            invoice.InvoiceItems = invoiceItems;
+
             return invoice;
         }
 
